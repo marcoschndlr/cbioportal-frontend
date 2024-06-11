@@ -410,6 +410,7 @@ const Timeline: React.FunctionComponent<ITimelineProps> = observer(function({
                         {filteredTracks.map(track => {
                             return (
                                 <TrackHeader
+                                    key={track.track.uid}
                                     store={store}
                                     track={track.track}
                                     height={track.height}

@@ -1,5 +1,5 @@
 import { TimelineTrack } from './TimelineTrack';
-import React, { useCallback, useState } from 'react';
+import React, { Fragment, useCallback, useState } from 'react';
 import { TimelineStore } from './TimelineStore';
 import _ from 'lodash';
 import { observer } from 'mobx-react';
@@ -40,7 +40,7 @@ export const TimelineTracks: React.FunctionComponent<ITimelineTracks> = observer
 
                         if (isTrackVisible) {
                             return (
-                                <>
+                                <Fragment key={track.track.uid}>
                                     <TimelineTrack
                                         limit={store.trimmedLimit}
                                         trackData={track.track}
@@ -55,7 +55,7 @@ export const TimelineTracks: React.FunctionComponent<ITimelineTracks> = observer
                                         y={y + 20}
                                         track={track.track}
                                     />
-                                </>
+                                </Fragment>
                             );
                         } else {
                             return null;
@@ -67,6 +67,7 @@ export const TimelineTracks: React.FunctionComponent<ITimelineTracks> = observer
                             nextY += track.height(store);
                             return (
                                 <CustomTrack
+                                    key={track.labelForExport}
                                     store={store}
                                     specification={track}
                                     handleTrackHover={handleTrackHover}
@@ -84,7 +85,7 @@ export const TimelineTracks: React.FunctionComponent<ITimelineTracks> = observer
                     let placementLeft =
                         position.x / getBrowserWindow().outerWidth > 0.5;
                     return (
-                        <Portal container={document.body}>
+                        <Portal container={document.body} key={uid}>
                             <Popover
                                 onMouseEnter={() => {
                                     store.togglePinTooltip(uid);

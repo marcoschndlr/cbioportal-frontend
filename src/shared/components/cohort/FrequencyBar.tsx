@@ -98,6 +98,7 @@ export default class FrequencyBar extends React.Component<
 
         return (
             <rect
+                key={`${color}-${count}`}
                 y="2"
                 width={proportion * (barWidth || 0)}
                 height={barHeight}
