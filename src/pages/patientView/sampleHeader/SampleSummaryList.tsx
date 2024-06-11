@@ -91,7 +91,7 @@ export default class SampleSummaryList extends React.Component<
                 const isPDX = this.isPDX(sample);
 
                 return (
-                    <div className="patientSample">
+                    <div className="patientSample" key={sample.id}>
                         <span className="clinical-spans">
                             {this.props.sampleManager.getComponentForSample(
                                 sample.id,

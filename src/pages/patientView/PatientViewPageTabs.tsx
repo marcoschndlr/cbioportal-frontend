@@ -382,7 +382,7 @@ export function tabs(
                     <div data-test="patientview-copynumber-table">
                         <If
                             condition={
-                                pageComponent.patientViewPageStore
+                                !!pageComponent.patientViewPageStore
                                     .discreteMolecularProfile.result
                             }
                         >

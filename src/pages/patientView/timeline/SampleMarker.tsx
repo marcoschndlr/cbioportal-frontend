@@ -17,10 +17,10 @@ const SampleMarker: React.FunctionComponent<{
             <text
                 x="0"
                 y="0"
-                text-anchor="middle"
+                textAnchor="middle"
                 fill="white"
-                font-size="10px"
-                font-family="Arial"
+                fontSize="10px"
+                fontFamily="Arial"
                 dy=".3em"
             >
                 {label}
@@ -69,10 +69,10 @@ export const MultipleSampleMarker: React.FunctionComponent<{
                 <text
                     x="0"
                     y="0"
-                    text-anchor="middle"
+                    textAnchor="middle"
                     fill="white"
-                    font-size="10px"
-                    font-family="Arial"
+                    fontSize="10px"
+                    fontFamily="Arial"
                     dy=".3em"
                 >
                     {label}

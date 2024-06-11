@@ -32,7 +32,7 @@ const VAFChartHeader: React.FunctionComponent<IVAFChartHeaderProps> = observer(
                 >
                     <text
                         style={{ textAlign: 'left' }}
-                        text-anchor="middle"
+                        textAnchor="middle"
                         transform={`translate(${width - 40},${mqxTickOffset /
                             2}) rotate(-90)`}
                     >

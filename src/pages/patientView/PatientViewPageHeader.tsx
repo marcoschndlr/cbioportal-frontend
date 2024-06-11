@@ -22,57 +22,64 @@ const PatientViewPageHeader: React.FC<IPatientPageHeaderProps> = observer(
         return (
             <div className="patientDataTable">
                 <table>
-                    <tr>
-                        <td>Patient:</td>
-                        <td>
-                            <PatientHeader
-                                handlePatientClick={(id: string) =>
-                                    props.handlePatientClick(id)
-                                }
-                                patient={
-                                    props.pageStore.patientViewData.result
-                                        .patient
-                                }
-                                studyId={props.pageStore.studyId}
-                                darwinUrl={props.pageStore.darwinUrl.result}
-                                sampleManager={
-                                    props.pageStore.sampleManager.result
-                                }
-                            />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Samples:</td>
-                        <td>
-                            <div className="patientSamples">
-                                {getRemoteDataGroupStatus(
-                                    props.pageStore.studyMetaData,
-                                    props.pageStore.hasMutationalSignatureData,
-                                    props.pageStore
-                                        .mutationalSignatureDataGroupByVersion,
-                                    props.pageStore.allSamplesForPatient
-                                ) === 'complete' && (
-                                    <SampleSummaryList
-                                        sampleManager={
-                                            props.pageStore.sampleManager
-                                                .result!
-                                        }
-                                        patientViewPageStore={props.pageStore}
-                                        handleSampleClick={
-                                            props.handleSampleClick
-                                        }
-                                        toggleGenePanelModal={
-                                            props.toggleGenePanelModal
-                                        }
-                                        genePanelModal={props.genePanelModal}
-                                        handlePatientClick={
-                                            props.handlePatientClick
-                                        }
-                                    />
-                                )}
-                            </div>
-                        </td>
-                    </tr>
+                    <tbody>
+                        <tr>
+                            <td>Patient:</td>
+                            <td>
+                                <PatientHeader
+                                    handlePatientClick={(id: string) =>
+                                        props.handlePatientClick(id)
+                                    }
+                                    patient={
+                                        props.pageStore.patientViewData.result
+                                            .patient
+                                    }
+                                    studyId={props.pageStore.studyId}
+                                    darwinUrl={props.pageStore.darwinUrl.result}
+                                    sampleManager={
+                                        props.pageStore.sampleManager.result
+                                    }
+                                />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Samples:</td>
+                            <td>
+                                <div className="patientSamples">
+                                    {getRemoteDataGroupStatus(
+                                        props.pageStore.studyMetaData,
+                                        props.pageStore
+                                            .hasMutationalSignatureData,
+                                        props.pageStore
+                                            .mutationalSignatureDataGroupByVersion,
+                                        props.pageStore.allSamplesForPatient
+                                    ) === 'complete' && (
+                                        <SampleSummaryList
+                                            sampleManager={
+                                                props.pageStore.sampleManager
+                                                    .result!
+                                            }
+                                            patientViewPageStore={
+                                                props.pageStore
+                                            }
+                                            handleSampleClick={
+                                                props.handleSampleClick
+                                            }
+                                            toggleGenePanelModal={
+                                                props.toggleGenePanelModal
+                                            }
+                                            genePanelModal={
+                                                props.genePanelModal
+                                            }
+                                            handlePatientClick={
+                                                props.handlePatientClick
+                                            }
+                                        />
+                                    )}
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
                 </table>
             </div>
         );

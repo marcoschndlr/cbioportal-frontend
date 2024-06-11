@@ -23,7 +23,7 @@ const LineChartAxis: React.FunctionComponent<ILineChartAxisProps> = function({
         <g transform={`translate(${width - tickWidth},0)`}>
             {ticks.map((tick, index) => {
                 return (
-                    <g transform={`translate(0, ${tick.offset})`}>
+                    <g transform={`translate(0, ${tick.offset})`} key={index}>
                         <text
                             // font family has to be inline, not from CSS,
                             //  because otherwise it won't download properly.

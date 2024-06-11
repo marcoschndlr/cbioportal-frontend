@@ -110,10 +110,11 @@ export default class PatientHeader extends React.Component<
                 >
                     <span className="clinical-spans" id="patient-attributes">
                         <a
-                            href="javascript:void(0)"
-                            onClick={() =>
-                                this.props.handlePatientClick(patient.id)
-                            }
+                            href=""
+                            onClick={event => {
+                                event.preventDefault();
+                                this.props.handlePatientClick(patient.id);
+                            }}
                         >
                             {patient.id}
                         </a>

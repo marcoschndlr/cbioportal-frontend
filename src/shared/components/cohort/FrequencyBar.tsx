@@ -73,7 +73,7 @@ export default class FrequencyBar extends React.Component<
         });
 
         return (
-            <svg width={totalWidth} height="12">
+            <svg width={totalWidth} height="12" key="lol">
                 <text x={textPos} y="9.5" textAnchor="start" fontSize="10">
                     {getPercentage(mainProportion)}
                 </text>
@@ -98,6 +98,7 @@ export default class FrequencyBar extends React.Component<
 
         return (
             <rect
+                key={`${color}-${count}`}
                 y="2"
                 width={proportion * (barWidth || 0)}
                 height={barHeight}

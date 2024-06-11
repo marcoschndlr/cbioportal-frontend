@@ -83,6 +83,7 @@ function renderTickGridLines(track: TimelineTrackSpecification, width: number) {
     const ticks = getTicksForLineChartAxis(track);
     return ticks.map(tick => (
         <line
+            key={tick.label}
             className={'tl-axis-grid-line tl-track-highlight'}
             x1={0}
             x2={width}
@@ -106,6 +107,7 @@ function renderLineChartConnectingLines(points: { x: number; y: number }[]) {
                     const prev = points[index - 1];
                     return (
                         <line
+                            key={index}
                             style={{
                                 stroke: '#555',
                                 strokeWidth: 2,
@@ -256,7 +258,7 @@ export const TimelineTrack: React.FunctionComponent<ITimelineTrackProps> = obser
 
         const points =
             eventsGroupedByPosition &&
-            _.map(eventsGroupedByPosition, itemGroup => {
+            _.map(eventsGroupedByPosition, (itemGroup, key) => {
                 const firstItem = itemGroup[0];
                 const position = getPosition(firstItem, limit);
 
@@ -300,6 +302,7 @@ export const TimelineTrack: React.FunctionComponent<ITimelineTrackProps> = obser
 
                 return (
                     <TimelineItemWithTooltip
+                        key={key}
                         x={position && position.pixelLeft}
                         store={store}
                         track={trackData}
@@ -372,6 +375,7 @@ const TimelineItemWithTooltip: React.FunctionComponent<{
 
     return (
         <g
+            key={syncTooltipUid()}
             style={{ cursor: 'pointer', ...hoverStyle }}
             transform={transforms.join(' ')}
             onMouseMove={e => {

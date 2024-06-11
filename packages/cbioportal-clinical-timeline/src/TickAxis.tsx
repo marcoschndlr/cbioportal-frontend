@@ -1,5 +1,5 @@
 import { TickIntervalEnum, TimelineTick } from './types';
-import React from 'react';
+import React, { Fragment } from 'react';
 import { TimelineStore } from './TimelineStore';
 import { observer } from 'mobx-react';
 import _ from 'lodash';
@@ -18,7 +18,7 @@ const TICK_LABEL_STYLE: any = {
 const MAJOR_TICK_HEIGHT = 6;
 const MINOR_TICK_HEIGHT = 3;
 
-function makeSquiggle(onClick: () => void) {
+function makeSquiggle(onClick: () => void, index: number) {
     const points = [
         'M0,5',
         'L2.5,8',
@@ -31,7 +31,7 @@ function makeSquiggle(onClick: () => void) {
         'L20,5',
     ];
     return (
-        <g transform={`translate(-6 ${TICK_AXIS_HEIGHT - 6})`}>
+        <g transform={`translate(-6 ${TICK_AXIS_HEIGHT - 6})`} key={index}>
             {/* this rect visually blocks the axis */}
             <rect y={5} height={1} width={20} fill={'#ffffff'} />
             {/* this rect is a mouse hitzone */}
@@ -88,7 +88,10 @@ const TickAxis: React.FunctionComponent<ITickAxisProps> = observer(function({
                     const minorTicks: JSX.Element[] = [];
 
                     if (tick.isTrim) {
-                        content = makeSquiggle(store.toggleExpandedTrims);
+                        content = makeSquiggle(
+                            store.toggleExpandedTrims,
+                            index
+                        );
                     } else {
                         const count = startPoint / store.tickInterval;
                         const unit =
@@ -111,7 +114,7 @@ const TickAxis: React.FunctionComponent<ITickAxisProps> = observer(function({
                         }
 
                         content = (
-                            <>
+                            <Fragment key={index}>
                                 <text
                                     dy={'1em'}
                                     style={{
@@ -128,7 +131,7 @@ const TickAxis: React.FunctionComponent<ITickAxisProps> = observer(function({
                                         MAJOR_TICK_HEIGHT})`}
                                     fill={'#aaa'}
                                 />
-                            </>
+                            </Fragment>
                         );
 
                         if (store.tickPixelWidth > 150) {
@@ -177,7 +180,10 @@ const TickAxis: React.FunctionComponent<ITickAxisProps> = observer(function({
 
                                 if (transform) {
                                     minorTicks.push(
-                                        <g transform={transform}>
+                                        <g
+                                            transform={transform}
+                                            key={`${index}-${i}`}
+                                        >
                                             <text
                                                 dy={'1.5em'}
                                                 style={{
@@ -228,13 +234,13 @@ const TickAxis: React.FunctionComponent<ITickAxisProps> = observer(function({
                         index > 0 && store.ticks[index - 1].isTrim;
 
                     return (
-                        <>
+                        <Fragment key={index}>
                             {!rightAfterTrim && transform && (
                                 <g transform={transform}>{content}</g>
                             )}
 
                             {minorTicks}
-                        </>
+                        </Fragment>
                     );
                 })}
             </g>

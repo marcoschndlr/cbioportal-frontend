@@ -638,7 +638,7 @@ export class LazyMobXTableStore<T> {
 
                 if (column.resizable) {
                     return (
-                        <React.Fragment>
+                        <React.Fragment key={column.name}>
                             {result}
                             <ColumnResizer
                                 className="columnResizer"
