@@ -564,7 +564,6 @@ export function tabs(
             key={4}
             id={PatientViewPageTabs.FilesAndLinks}
             linkText={RESOURCES_TAB_NAME}
-            hide={!pageComponent.shouldShowResources}
         >
             <div>
                 <ResourcesTab
