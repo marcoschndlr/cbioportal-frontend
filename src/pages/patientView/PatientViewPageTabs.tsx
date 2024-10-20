@@ -766,6 +766,7 @@ export function tabs(
                 columns={pageComponent.columns}
                 pageMode={pageComponent.patientViewPageStore.pageMode}
                 alleleFreqHeaderRender={undefined}
+                width={WindowStore.size.width}
             ></Presentation>
         </MSKTab>
     );
